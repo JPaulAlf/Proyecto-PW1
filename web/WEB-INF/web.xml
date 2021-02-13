@@ -30,7 +30,7 @@
    
     <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>omega</param-value>
+        <param-value>luna-green</param-value>
     </context-param>
     
 </web-app>
