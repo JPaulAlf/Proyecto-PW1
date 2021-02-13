@@ -13,59 +13,17 @@
         <div class="card">
             <h:form>
                 <p:growl id="messages"/>
-
                 <p:menubar>
-                    <p:submenu label="File" icon="pi pi-file">
-                        <p:submenu label="New" icon="pi pi-briefcase">
-                            <p:menuitem value="Project" url="#"/>
-                            <p:menuitem value="Other" url="#"/>
-                        </p:submenu>
-                        <p:menuitem value="Open" url="#"/>
-                        <p:menuitem value="Quit" url="#"/>
-                    </p:submenu>
-                    
-                    <p:submenu label="Inicio" icon="pi pi-file">
-                        <p:submenu label="New" icon="pi pi-briefcase">
-                            <p:menuitem value="Project" url="#"/>
-                            <p:menuitem value="Other" url="#"/>
-                        </p:submenu>
-                        <p:menuitem value="Open" url="#"/>
-                        <p:menuitem value="Quit" url="#"/>
-                    </p:submenu>
-                     
-                    <p:submenu label="Edit" icon="pi pi-pencil">
-                        <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left"/>
-                        <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right"/>
-                    </p:submenu>
 
-                    <p:submenu label="Help" icon="pi pi-question">
-                        <p:menuitem value="Contents" url="#"/>
-                        <p:submenu label="Search" icon="pi pi-search">
-                            <p:submenu label="Text">
-                                <p:menuitem value="Workspace" url="#"/>
-                            </p:submenu>
-                            <p:menuitem value="File" url="#"/>
-                        </p:submenu>
-                    </p:submenu>
-
-                    <p:submenu label="Actions" icon="pi pi-cog">
-                        <p:submenu label="Ajax" icon="pi pi-refresh">
-                            <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
-                            <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh"
-                                        update="messages"/>
-                        </p:submenu>
-                        <p:submenu label="Non-Ajax" icon="pi pi-clone">
-                            <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages"
-                                        ajax="false"/>
-                        </p:submenu>
-                    </p:submenu>
-
-                    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times"/>
+                    <p:menuitem value="Inicio" url="#" icon="fa fa-home"/>
+                    <p:menuitem value="Productos" url="http://www.primefaces.org" icon="fa fa-shopping-cart"/>
+                    <p:menuitem value="Pedidos" url="http://www.primefaces.org" icon="fa fa-tachometer"/>
 
                     <f:facet name="options">
-                        <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
-                        <p:commandButton type="button" value="LogIn" icon="pi pi-user"/>
+                        <p:commandButton type="button" value="Entrar" icon="fa fa-user-plus
+                                         "/>
                     </f:facet>
+
                 </p:menubar>
             </h:form>
         </div>
@@ -74,47 +32,118 @@
         <p:clock pattern= "dd/MM hh:mm:ss" displayMode="digital"/>
         <br></br>
         <br></br>
-
-
-
-        <h:form id="form">
+        <h:form>
             <div class="card">
-                <p:carousel value="#{carouselView.products}" var="product" responsive="true" >
-                    <div class="product">
-                        <div class="product-grid-item p-p-5">
-                            <div class="product-grid-item-top">
-                                <div>
-                                    <i class="pi pi-tag product-category-icon"/>
-                                    <span class="product-category">#{product.category}</span>
-                                </div>
-                                <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">#{product.inventoryStatus.text}</span>
-                            </div>
-                            <div class="product-grid-item-content">
-                                <p:graphicImage name="demo/images/product/#{product.image}"/>
-                                <div class="product-name">#{product.name}</div>
-                                <div class="product-description">#{product.description}</div>
-                                <p:rating readonly="true" value="#{product.rating}"/>
-                            </div>
-                            <div class="product-grid-item-bottom">
-                                <h:outputText value="#{product.price}" styleClass="product-price">
-                                    <f:convertNumber currencySymbol="$" type="currency"/>
-                                </h:outputText>
-                                <p:commandButton type="button" value="Add To Cart"
-                                                 icon="pi pi-shopping-cart"
-                                                 disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
-                                </p:commandButton>
-                            </div>
+
+                <h5 style="margin-top:0">Datos personales</h5>
+
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                            <p:inputText placeholder="Nombre" maxlength="20"/>
                         </div>
                     </div>
-                    <f:facet name="footer">
-                        In total there are 9 products.
-                    </f:facet>
-                </p:carousel>
-            </div>        
-        </h:form>
 
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-newspaper-o"></i></span>
+                            <p:inputMask placeholder="Identificacion" mask="9-9999-9999" validateMask="true"/>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span>
+                            <p:inputMask placeholder="Telefono" mask="(999) 9999-9999" validateMask="true"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
+                            <p:inputMask  placeholder="Correo electronico"/>
+                        </div>
+                    </div>
+                </div>
+
+                <h5>Direccion</h5>
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel for="@next" value="Provincia"/>
+                        <p:selectOneMenu id="Provincia" value="3">
+                            <f:selectItem itemLabel="Select One" itemValue=""/>
+                            <f:selectItem itemLabel="Option1" itemValue="Option1"/>
+                            <f:selectItem itemLabel="Option2" itemValue="Option2"/>
+                            <f:selectItem itemLabel="Option3" itemValue="Option3"/>
+                            <f:facet name="footer">
+                                <h:outputText value="3 options" style="font-weight:bold;"/>
+                            </f:facet>
+                        </p:selectOneMenu>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel for="@next" value="Canton"/>
+                        <p:selectOneMenu id="Canton" value="3">
+                            <f:selectItem itemLabel="Select One" itemValue=""/>
+                            <f:selectItem itemLabel="Option1" itemValue="Option1"/>
+                            <f:selectItem itemLabel="Option2" itemValue="Option2"/>
+                            <f:selectItem itemLabel="Option3" itemValue="Option3"/>
+                            <f:facet name="footer">
+                                <h:outputText value="3 options" style="font-weight:bold;"/>
+                            </f:facet>
+                        </p:selectOneMenu>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel for="@next" value="Distrito"/>
+                        <p:selectOneMenu id="Distrito" value="3">
+                            <f:selectItem itemLabel="Select One" itemValue=""/>
+                            <f:selectItem itemLabel="Option1" itemValue="Option1"/>
+                            <f:selectItem itemLabel="Option2" itemValue="Option2"/>
+                            <f:selectItem itemLabel="Option3" itemValue="Option3"/>
+                            <f:facet name="footer">
+                                <h:outputText value="3 options" style="font-weight:bold;"/>
+                            </f:facet>
+                        </p:selectOneMenu>
+                    </div>
+                    
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel for="@next" value="Barrio"/>
+                        <p:selectOneMenu id="Barrio" value="3">
+                            <f:selectItem itemLabel="Select One" itemValue=""/>
+                            <f:selectItem itemLabel="Option1" itemValue="Option1"/>
+                            <f:selectItem itemLabel="Option2" itemValue="Option2"/>
+                            <f:selectItem itemLabel="Option3" itemValue="Option3"/>
+                            <f:facet name="footer">
+                                <h:outputText value="3 options" style="font-weight:bold;"/>
+                            </f:facet>
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-6">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-street-view"></i></span>
+                            <p:inputText placeholder="Senias"/>
+                        </div>
+                    </div>
+                </div>
+
+                <h5>Checkbox</h5>
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon-checkbox"><p:selectBooleanCheckbox/></span>
+                            <p:inputText placeholder="Username"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
     </h:body>
 </html>
 
